@@ -1,0 +1,16 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "Primjer";
+}
+
+<h1>Primjer</h1>
+<h3>@ViewBag.PrviPodatak</h3>
+
+<ul>
+@foreach(var i in Model)
+{
+    <li>@i</li>
+}
+</ul>
+
+

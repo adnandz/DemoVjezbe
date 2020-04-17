@@ -1,0 +1,58 @@
+﻿@model DemoVjezbe.Controllers.AutomobilProizvodjacViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-controller="Automobil" asp-action="Index">
+    <p>
+        <select asp-for="NazivProizvodjaca" asp-items="Model.Proizvodjaci" asp->
+        <option value=""> ----SVI ----</option>
+        </select>
+
+        Pretraga: <input type ="text" name="Upit" />
+        <input type="submit" value="Pretrazi" class="glyphicon glyphicon-search" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Automobili[0].NazivModela)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Automobili[0].GodinaProizvodnje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Automobili[0].Proizvodjac)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Automobili) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NazivModela)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GodinaProizvodnje)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proizvodjac.Naziv)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
